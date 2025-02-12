@@ -32,7 +32,7 @@ public class Cam06_PositionsTests {
 
         Map<String, String> userCredential = new HashMap<>();
         userCredential.put("username", "turkeyts");
-        userCredential.put("password", "TechnoStudy123");
+        userCredential.put("password", "Techno2025.%");
         userCredential.put("rememberMe", "true");
 
         Cookies cookies =
