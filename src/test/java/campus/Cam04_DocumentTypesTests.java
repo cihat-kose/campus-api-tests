@@ -26,7 +26,7 @@ public class Cam04_DocumentTypesTests {
 
         Map<String, Object> userCredential = new HashMap<>();
         userCredential.put("username", "turkeyts");
-        userCredential.put("password", "TechnoStudy123");
+        userCredential.put("password", "Techno2025.%");
         userCredential.put("rememberMe", "true");
 
         Cookies cookies =
