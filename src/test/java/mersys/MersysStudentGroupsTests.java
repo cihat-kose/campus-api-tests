@@ -33,18 +33,18 @@ public class MersysStudentGroupsTests {
 
 //        Map<String, String> userCredential = new HashMap<>();
 //        userCredential.put("username", "turkeyts");
-//        userCredential.put("password", "TechnoStudy123");
+//        userCredential.put("password", "Techno2025.%");
 //        userCredential.put("rememberMe", "true");
 
 //        String userCredential="{\n" +
 //                "  \"username\": \"turkeyts\",\n" +
-//                "  \"password\": \"TechnoStudy123\",\n" +
+//                "  \"password\": \"Techno2025.%\",\n" +
 //                "  \"rememberMe\": \"true\"\n" +
 //                "}";
 
         Login userCredential = new Login();
         userCredential.setUsername("turkeyts");
-        userCredential.setPassword("TechnoStudy123");
+        userCredential.setPassword("Techno2025.%");
         userCredential.setRememberMe("true");
 
         Cookies cookies =
