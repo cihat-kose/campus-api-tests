@@ -31,8 +31,8 @@ public class Cam03_AttestationsTests {
         baseURI = "https://test.mersys.io";
 
         Map<String, String> userCredential = new HashMap<>();
-        userCredential.put("username", "turkeyts");
-        userCredential.put("password", "Techno2025.%");
+        userCredential.put("username", "Campus25");
+        userCredential.put("password", "Campus.2524");
         userCredential.put("rememberMe", "true");
 
         Cookies cookies =
