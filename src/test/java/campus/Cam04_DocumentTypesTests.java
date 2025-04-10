@@ -25,8 +25,8 @@ public class Cam04_DocumentTypesTests {
         baseURI = "https://test.mersys.io";
 
         Map<String, Object> userCredential = new HashMap<>();
-        userCredential.put("username", "turkeyts");
-        userCredential.put("password", "Techno2025.%");
+        userCredential.put("username", "Campus25");
+        userCredential.put("password", "Campus.2524");
         userCredential.put("rememberMe", "true");
 
         Cookies cookies =
