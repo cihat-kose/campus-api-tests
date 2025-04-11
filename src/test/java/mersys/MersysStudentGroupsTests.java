@@ -32,19 +32,19 @@ public class MersysStudentGroupsTests {
         baseURI = "https://test.mersys.io/school-service/api/student-group";
 
 //        Map<String, String> userCredential = new HashMap<>();
-//        userCredential.put("username", "turkeyts");
-//        userCredential.put("password", "Techno2025.%");
+//        userCredential.put("username", "Campus25");
+//        userCredential.put("password", "Campus.2524");
 //        userCredential.put("rememberMe", "true");
 
 //        String userCredential="{\n" +
-//                "  \"username\": \"turkeyts\",\n" +
-//                "  \"password\": \"Techno2025.%\",\n" +
+//                "  \"username\": \"Campus25\",\n" +
+//                "  \"password\": \"Campus.2524\",\n" +
 //                "  \"rememberMe\": \"true\"\n" +
 //                "}";
 
         Login userCredential = new Login();
-        userCredential.setUsername("turkeyts");
-        userCredential.setPassword("Techno2025.%");
+        userCredential.setUsername("Campus25");
+        userCredential.setPassword("Campus.2524");
         userCredential.setRememberMe("true");
 
         Cookies cookies =
