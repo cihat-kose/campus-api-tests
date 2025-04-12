@@ -1,12 +1,12 @@
-package campus;
+package campus.school;
 
-import io.restassured.http.ContentType;
+import campus.base.BaseTest;
 import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
-public class Cam04_DocumentTypesTests extends BaseTest {
+public class DocumentTypesTests extends BaseTest {
 
     String documentTypesId;
 

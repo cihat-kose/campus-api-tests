@@ -1,13 +1,17 @@
-package campus;
+package campus.base;
 
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
-import io.restassured.response.Cookies;
+import io.restassured.http.Cookies; // Dikkat! Doğru paket: http
 import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.BeforeClass;
 
 import static io.restassured.RestAssured.*;
 
+/**
+ * All test classes can inherit this class and use the login process ready-made.
+ * Login information is sent via UserCredentials (POJO).
+ */
 public class BaseTest {
 
     protected RequestSpecification requestSpecification;
@@ -16,14 +20,15 @@ public class BaseTest {
     public void login() {
         baseURI = "https://test.mersys.io";
 
-        Login userCredential = new Login();
-        userCredential.setUsername("Campus25");
-        userCredential.setPassword("Campus.2524");
-        userCredential.setRememberMe("true");
+        // POJO object that carries user information
+        UserCredentials userCredentials = new UserCredentials();
+        userCredentials.setUsername("Campus25");
+        userCredentials.setPassword("Campus.2524");
+        userCredentials.setRememberMe("true");
 
         Cookies cookies = given()
                 .contentType(ContentType.JSON)
-                .body(userCredential)
+                .body(userCredentials)
                 .when()
                 .post("/auth/login")
                 .then()
@@ -32,6 +37,7 @@ public class BaseTest {
                 .response()
                 .getDetailedCookies();
 
+        // A specification is created with the cookies received after logging in
         requestSpecification = new RequestSpecBuilder()
                 .setContentType(ContentType.JSON)
                 .addCookies(cookies)

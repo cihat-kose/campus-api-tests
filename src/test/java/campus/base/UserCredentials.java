@@ -1,9 +1,18 @@
-package mersys;
+package campus.base;
 
-public class Login {
+public class UserCredentials {
+
     private String username;
     private String password;
     private String rememberMe;
+
+    public UserCredentials() {}
+
+    public UserCredentials(String username, String password, String rememberMe) {
+        this.username = username;
+        this.password = password;
+        this.rememberMe = rememberMe;
+    }
 
     public String getUsername() {
         return username;

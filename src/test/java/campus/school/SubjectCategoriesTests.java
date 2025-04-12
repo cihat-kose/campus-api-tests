@@ -1,5 +1,6 @@
-package campus;
+package campus.school;
 
+import campus.base.BaseTest;
 import com.github.javafaker.Faker;
 import org.testng.annotations.Test;
 
@@ -10,7 +11,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
 
-public class Cam07_SubjectCategoriesTests extends BaseTest {
+public class SubjectCategoriesTests extends BaseTest {
 
     Faker faker = new Faker();
     String subjectID;

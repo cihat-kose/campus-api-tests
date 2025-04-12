@@ -1,35 +1,31 @@
-package mersys;
+package campus.student;
 
+import campus.base.BaseTest;
 import com.github.javafaker.Faker;
-import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
-import io.restassured.http.Cookies;
-import io.restassured.specification.RequestSpecification;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static io.restassured.RestAssured.baseURI;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
 
-public class MersysStudentGroupsTests {
+public class StudentGroupsTests extends BaseTest {
 
-    Faker randomGenerator = new Faker();
+    Faker faker = new Faker();
     String studentGroupID;
     String studentGroupSchoolID = "646cbb07acf2ee0d37c6d984";
-    String studentGroupName = randomGenerator.company().name();
-    String studentGroupDescription = randomGenerator.company().catchPhrase();
+    String studentGroupName = faker.company().name();
+    String studentGroupDescription = faker.company().catchPhrase();
     Map<String, String> studentGroup;
-    RequestSpecification requestSpecification;
 
-    @BeforeClass
-    public void login() {
-
-        baseURI = "https://test.mersys.io/school-service/api/student-group";
+    /*
+     * ========================
+     * Login Alternatives
+     * ========================
+     */
 
 //        Map<String, String> userCredential = new HashMap<>();
 //        userCredential.put("username", "Campus25");
@@ -42,27 +38,6 @@ public class MersysStudentGroupsTests {
 //                "  \"rememberMe\": \"true\"\n" +
 //                "}";
 
-        Login userCredential = new Login();
-        userCredential.setUsername("Campus25");
-        userCredential.setPassword("Campus.2524");
-        userCredential.setRememberMe("true");
-
-        Cookies cookies =
-
-                given()
-                        .contentType(ContentType.JSON).body(userCredential)
-
-                        .when()
-                        .post("https://test.mersys.io/auth/login")
-
-                        .then()
-//                       .log().all()
-                        .statusCode(200).extract().response().getDetailedCookies();
-
-        requestSpecification = new RequestSpecBuilder().setContentType(ContentType.JSON).addCookies(cookies).build();
-    }
-
-
     @Test
     public void createStudentGroup() {
 
@@ -74,10 +49,13 @@ public class MersysStudentGroupsTests {
         studentGroupID =
 
                 given()
-                        .spec(requestSpecification).body(studentGroup).log().body()
+                        .spec(requestSpecification)
+                        .contentType(ContentType.JSON)
+                        .body(studentGroup)
+                        .log().body()
 
                         .when()
-                        .post("")
+                        .post("/school-service/api/student-group")
 
                         .then()
                         .log().body()
@@ -87,17 +65,17 @@ public class MersysStudentGroupsTests {
         System.out.println("studentGroupID = " + studentGroupID);
     }
 
-
     @Test(dependsOnMethods = "createStudentGroup")
     public void createStudentGroupNegative() {
 
         given()
                 .spec(requestSpecification)
+                .contentType(ContentType.JSON)
                 .body(studentGroup)
                 .log().body()
 
                 .when()
-                .post("")
+                .post("/school-service/api/student-group")
 
                 .then()
                 .log().body()
@@ -105,28 +83,26 @@ public class MersysStudentGroupsTests {
                 .body("message", containsString("already"));
     }
 
-
     @Test(dependsOnMethods = "createStudentGroup")
     public void editStudentGroup() {
 
         studentGroup.put("id", studentGroupID);
         studentGroup.put("name", "New " + studentGroupName);
-        studentGroup.put("description", studentGroupDescription + randomGenerator.shakespeare());
+        studentGroup.put("description", studentGroupDescription + " - " + faker.artist().name());
 
         given()
                 .spec(requestSpecification)
+                .contentType(ContentType.JSON)
                 .body(studentGroup)
-                // .log().body()
 
                 .when()
-                .put("")
+                .put("/school-service/api/student-group")
 
                 .then()
-                .log().body() // show incoming body as log
+                .log().body()
                 .statusCode(200)
                 .body("name", equalTo("New " + studentGroupName));
     }
-
 
     @Test(dependsOnMethods = "editStudentGroup")
     public void deleteStudentGroup() {
@@ -136,13 +112,12 @@ public class MersysStudentGroupsTests {
                 .log().uri()
 
                 .when()
-                .delete(studentGroupID)
+                .delete("/school-service/api/student-group/" + studentGroupID)
 
                 .then()
                 .log().body()
                 .statusCode(200);
     }
-
 
     @Test(dependsOnMethods = "deleteStudentGroup")
     public void deleteStudentGroupNegative() {
@@ -153,7 +128,7 @@ public class MersysStudentGroupsTests {
                 .log().uri()
 
                 .when()
-                .delete("{studentGroupID}")
+                .delete("/school-service/api/student-group/{studentGroupID}")
 
                 .then()
                 .log().body()

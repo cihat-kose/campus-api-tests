@@ -1,5 +1,6 @@
-package campus;
+package campus.school;
 
+import campus.base.BaseTest;
 import com.github.javafaker.Faker;
 import org.testng.annotations.Test;
 
@@ -8,7 +9,7 @@ import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 
-public class Cam09_DepartmentsTests extends BaseTest {
+public class DepartmentsTests extends BaseTest {
 
     String departmentsId;
     String departmentsName;

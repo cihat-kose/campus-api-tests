@@ -3,18 +3,18 @@
 <suite name="All Test Suite">
     <test name="Main Test">
         <classes>
-            <class name="campus.Cam02_PositionCategoriesTests"></class>
-            <class name="campus.Cam03_AttestationsTests"></class>
-            <class name="campus.Cam04_DocumentTypesTests"></class>
-            <class name="campus.Cam05_FieldsTests"></class>
-            <class name="campus.Cam06_PositionsTests"></class>
-            <class name="campus.Cam07_SubjectCategoriesTests"></class>
-            <class name="campus.Cam08_SchoolLocationsTests"></class>
-            <class name="campus.Cam09_DepartmentsTests"></class>
-            <class name="campus.Cam10_BankAccountsTests"></class>
-            <class name="campus.Cam11_GradeLevelsTests"></class>
-            <class name="campus.Cam12_DiscountsTests"></class>
-            <class name="campus.Cam13_NationalitiesTests"></class>
+            <class name="campus.school.PositionCategoriesTests"></class>
+            <class name="campus.school.AttestationsTests"></class>
+            <class name="campus.school.DocumentTypesTests"></class>
+            <class name="campus.school.FieldsTests"></class>
+            <class name="campus.school.PositionsTests"></class>
+            <class name="campus.school.SubjectCategoriesTests"></class>
+            <class name="campus.school.SchoolLocationsTests"></class>
+            <class name="campus.school.DepartmentsTests"></class>
+            <class name="campus.school.BankAccountsTests"></class>
+            <class name="campus.school.GradeLevelsTests"></class>
+            <class name="campus.school.DiscountsTests"></class>
+            <class name="campus.school.NationalitiesTests"></class>
         </classes>
     </test>
 </suite>

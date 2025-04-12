@@ -1,8 +1,7 @@
-package campus;
+package campus.school;
 
+import campus.base.BaseTest;
 import com.github.javafaker.Faker;
-import io.restassured.http.ContentType;
-import io.restassured.specification.RequestSpecification;
 import org.testng.annotations.Test;
 
 import java.util.HashMap;
@@ -12,7 +11,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
 
-public class Cam02_PositionCategoriesTests extends BaseTest {
+public class PositionCategoriesTests extends BaseTest {
 
     Faker faker = new Faker();
     String positionCategoriesID;
