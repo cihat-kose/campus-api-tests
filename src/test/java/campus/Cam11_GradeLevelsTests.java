@@ -23,19 +23,17 @@ public class Cam11_GradeLevelsTests {
     String gradelevelShortName;
     RequestSpecification recSpec;
     Map<String, String> gradeLevel;
+    
     @BeforeClass
     public void Setup() {
-
         baseURI = "https://test.mersys.io";
 
         Map<String, String> userCredential = new HashMap<>();
-
-        userCredential.put("username", "turkeyts");
-        userCredential.put("password", "Techno2025.%");
+        userCredential.put("username", "Campus25");
+        userCredential.put("password", "Campus.2524");
         userCredential.put("rememberMe", "true");
 
         Cookies cookies =
-
                 given()
 
                         .contentType(ContentType.JSON)
@@ -57,7 +55,6 @@ public class Cam11_GradeLevelsTests {
 
     @Test
     public void createGradeLevel() {
-
         gradeLevel = new HashMap<>();
         gradelevelName = faker.name().firstName() + faker.number().digits(5);
         gradelevelShortName = faker.name().lastName() + faker.number().digits(5);
@@ -87,7 +84,6 @@ public class Cam11_GradeLevelsTests {
 
     @Test(dependsOnMethods = "createGradeLevel")
     public void createGradeLevelNegative() {
-
         gradeLevel.put("name", gradelevelName);
         gradeLevel.put("shortName", gradelevelShortName);
 
@@ -110,7 +106,6 @@ public class Cam11_GradeLevelsTests {
 
     @Test(dependsOnMethods = "createGradeLevelNegative")
     public void updateGradeLevel() {
-
         gradeLevel.put("id", gradelevelID);
         gradelevelName = ("TechnoStudy" + faker.number().digits(5));
         gradeLevel.put("name", gradelevelName);
@@ -135,7 +130,6 @@ public class Cam11_GradeLevelsTests {
 
     @Test(dependsOnMethods = "updateGradeLevel")
     public void deleteGradeLevel() {
-
         given()
 
                 .spec(recSpec)
@@ -153,7 +147,6 @@ public class Cam11_GradeLevelsTests {
 
     @Test(dependsOnMethods = "deleteGradeLevel")
     public void deleteGradeLevelNegative() {
-
         given()
 
                 .spec(recSpec)
