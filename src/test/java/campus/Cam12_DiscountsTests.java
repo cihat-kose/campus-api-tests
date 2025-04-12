@@ -31,8 +31,8 @@ public class Cam12_DiscountsTests {
 
         Map<String, String> userCredential = new HashMap<>();
         userCredential.put("username", "turkeyts");
-        userCredential.put("password", "Techno2025.%");
-        userCredential.put("rememberMe", "true");
+        userCredential.put("username", "Campus25");
+        userCredential.put("password", "Campus.2524");
 
         Cookies cookies =
 
