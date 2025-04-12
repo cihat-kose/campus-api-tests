@@ -6,15 +6,14 @@ import org.testng.annotations.Test;
 import static io.restassured.RestAssured.given;
 
 /**
- * Login using raw JSON string.
- * This class uses Java 15+ Text Blocks (""") for cleaner syntax.
- * A classic Java 8+ version is also provided in comments.
+ * Positive login test using raw JSON in Java text blocks.
+ * Uses Java 15+ Text Blocks for cleaner multiline JSON definition.
  */
 public class LoginWithRawJsonTest {
 
     @Test
     public void loginWithTextBlockJson() {
-        // ✅ Java 15+ Text Block (clean multiline string)
+        // Raw JSON login credentials
         String json = """
             {
               "username": "Campus25",
@@ -26,16 +25,16 @@ public class LoginWithRawJsonTest {
         given()
                 .contentType(ContentType.JSON)
                 .body(json)
-
+                .log().body() // Optional: logs request for debugging
                 .when()
                 .post("https://test.mersys.io/auth/login")
-
                 .then()
+                .log().body() // Optional: logs response
                 .statusCode(200);
     }
 
     /*
-     * 🔁 Java 8-14 Classic Multiline String Version:
+     * 🔁 Alternative for Java 8-14 (without Text Blocks):
      *
      * String json = "{\\n" +
      *               "  \\\"username\\\": \\\"Campus25\\\",\\n" +

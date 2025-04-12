@@ -1,4 +1,3 @@
-
 # Mersys Campus API Tests
 
 ![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)
@@ -34,12 +33,12 @@ This project leverages **Rest Assured, TestNG, Hamcrest, and JavaFaker** to auto
 ---
 
 ## Features
-- **API Automation** – Supports CRUD operations via `GET`, `POST`, `PUT`, and `DELETE` requests.  
-- **Data-Driven Testing** – Uses JavaFaker for dynamic data generation.  
-- **Modular Design** – Reusable request/response specifications for enhanced test scalability.  
-- **Comprehensive Logging** – Logs API requests/responses for better debugging and reporting.  
-- **Parallel Test Execution** – Executes tests concurrently to reduce runtime.  
-- **Reporting** – Detailed HTML reports via TestNG.  
+- **API Automation** – Supports CRUD operations via `GET`, `POST`, `PUT`, and `DELETE` requests.
+- **Data-Driven Testing** – Uses JavaFaker for dynamic data generation.
+- **Modular Design** – Reusable request/response specifications for enhanced test scalability.
+- **Comprehensive Logging** – Logs API requests/responses for better debugging and reporting.
+- **Parallel Test Execution** – Executes tests concurrently to reduce runtime.
+- **Reporting** – Detailed HTML reports via TestNG.
 
 ---
 
@@ -50,21 +49,21 @@ git clone https://github.com/cihat-kose/campus-api-tests.git
 ```
 
 ### 2. Import the Project (IntelliJ IDEA)
-1. **File > New > Project from Version Control**  
-2. Enter Repository URL:  
+1. **File > New > Project from Version Control**
+2. Enter Repository URL:
    ```bash
    https://github.com/cihat-kose/campus-api-tests.git
    ```
-3. **Maven auto-import** should download dependencies automatically.  
+3. **Maven auto-import** should download dependencies automatically.
 
 ---
 
 ## Configuration
 ### IntelliJ Plugins (Recommended)
-- **TestNG**  
-- **Maven Helper**  
-- **REST Client**  
-- **Lombok Plugin** *(Optional - if Lombok is used in the project)*  
+- **TestNG**
+- **Maven Helper**
+- **REST Client**
+- **Lombok Plugin** *(Optional)*
 
 ---
 
@@ -76,52 +75,66 @@ mvn clean test
 ```
 
 #### 2. Run Specific Tests (via IntelliJ IDEA)
-- Right-click `testng.xml`  
-- Select **Run 'testng.xml'**  
+- Right-click `testng.xml`
+- Select **Run 'testng.xml'**
 
 ---
 
 ## Folder Structure
 ```plaintext
 campus-api-tests/
-│
 ├── src/
 │   └── test/
 │       ├── java/
-│       │   ├── campus/               # Campus-related API tests
-│       │   │   ├── Cam02_PositionCategoriesTests.java  # Tests for Position Categories
-│       │   │   ├── Cam03_AttestationsTests.java        # Tests for Attestations
-│       │   │   ├── Cam04_DocumentTypesTests.java       # Tests for Document Types
-│       │   │   └── ...                                 # Other campus test cases
-│       │   └── mersys/               # Mersys system tests
-│       │       ├── Login.java        # Login tests for Mersys platform
-│       │       └── MersysStudentGroupsTests.java # Tests for Mersys student groups
+│       │   └── campus/
+│       │       ├── auth/                        # Authentication tests
+│       │       │   ├── LoginNegativeTests.java
+│       │       │   ├── LoginPositiveTests.java
+│       │       │   └── LoginWithRawJsonTest.java
+│       │       ├── base/
+│       │       │   └── BaseTest.java            # Base class for tests
+│       │       ├── school/                      # School-related API tests
+│       │       │   ├── AttestationsTests.java
+│       │       │   ├── BankAccountsTests.java
+│       │       │   ├── DepartmentsTests.java
+│       │       │   ├── DiscountsTests.java
+│       │       │   ├── DocumentTypesTests.java
+│       │       │   ├── FieldsTests.java
+│       │       │   ├── GradeLevelsTests.java
+│       │       │   ├── NationalitiesTests.java
+│       │       │   ├── PositionCategoriesTests.java
+│       │       │   ├── PositionsTests.java
+│       │       │   ├── SchoolLocationsTests.java
+│       │       │   └── SubjectCategoriesTests.java
+│       │       ├── student/                     # Student-related API tests
+│       │       │   └── StudentGroupsTests.java
+│       │       └── utils/
+│       │           └── UserCredentials.java     # Utility class for credentials
 │       └── resources/
-│           └── testng.xml            # TestNG configuration for running tests
-├── target/                           # Build output directory
-├── images/                           # Project-related images
-│   └── HTTP_Status_Codes.png         # Image for HTTP Status Codes
-├── LICENSE                           # Project license (MIT License)
-├── pom.xml                           # Maven configuration and dependencies
-└── README.md                         # Project documentation
-
+│           └── testng.xml                       # TestNG suite configuration
+├── target/                                      # Build outputs and reports
+├── images/                                      # Project images
+├── LICENSE                                      # Project license (MIT)
+├── pom.xml                                      # Maven dependencies
+└── README.md                                    # Documentation
 ```
 
-## Dependencies
-Dependencies are managed in `pom.xml`. Key dependencies include:
+---
 
-- **RestAssured**: For making HTTP requests to test APIs.  
-- **TestNG**: For organizing and managing test execution.  
-- **Hamcrest**: For enhanced assertions in test validations.  
-- **Jackson**: For JSON serialization and deserialization.  
-- **JavaFaker**: For generating random test data.  
-- **SLF4J (Simple Logging Facade for Java)**: For logging support.  
+## Dependencies
+Managed via `pom.xml`:
+- **RestAssured** – API requests
+- **TestNG** – Test execution
+- **Hamcrest** – Enhanced assertions
+- **Jackson** – JSON handling
+- **JavaFaker** – Data generation
+- **SLF4J** – Logging
 
 ---
 
 ## Reporting and Logs
-- **HTML Reports** – After tests, HTML reports are generated in the `target/surefire-reports` directory.  
-- **Logs** – Request and response bodies are logged for debugging.  
+- **HTML Reports** – Generated in `target/surefire-reports`
+- **Logs** – Detailed request/response logs
 ```bash
 cat target/surefire-reports/emailable-report.html
 ```
@@ -154,13 +167,13 @@ To contribute:
 3. Commit your changes (`git commit -m 'Add new feature'`).
 4. Push to the branch (`git push origin feature-branch`).
 5. Create a Pull Request.
+
 ---
 
 ## License
-This project is licensed under the MIT License.  
-See the [LICENSE](LICENSE) file for details.  
+MIT License – See [LICENSE](LICENSE) file.
 
 ---
 
 ## Contact
-For any questions or contributions, please open an issue in this repository.
+For any questions or contributions, open an issue on GitHub.

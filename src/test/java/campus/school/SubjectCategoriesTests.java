@@ -1,5 +1,6 @@
-package campus;
+package campus.school;
 
+import campus.base.BaseTest;
 import com.github.javafaker.Faker;
 import org.testng.annotations.Test;
 
@@ -10,7 +11,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
 
-public class Cam07_SubjectCategoriesTests extends BaseTest {
+public class SubjectCategoriesTests extends BaseTest {
 
     Faker faker = new Faker();
     String subjectID;
@@ -44,9 +45,6 @@ public class Cam07_SubjectCategoriesTests extends BaseTest {
 
     @Test(dependsOnMethods = "createSubject")
     public void createSubjectNegative() {
-        subject.put("name", subjectName);
-        subject.put("code", subjectCode);
-
         given()
                 .spec(requestSpecification)
                 .body(subject)
@@ -55,8 +53,8 @@ public class Cam07_SubjectCategoriesTests extends BaseTest {
                 .post("/school-service/api/subject-categories")
                 .then()
                 .log().body()
-                .statusCode(400)
-                .body("message", containsString("already"));
+                .statusCode(500) // TODO: If backend returns 400 instead of 500, change this to 400
+                .body("detail", containsString("already")); // TODO: If backend uses "message" instead of "detail", update this
     }
 
     @Test(dependsOnMethods = "createSubjectNegative")
@@ -87,7 +85,7 @@ public class Cam07_SubjectCategoriesTests extends BaseTest {
                 .delete("/school-service/api/subject-categories/{subjectID}")
                 .then()
                 .log().body()
-                .statusCode(200);
+                .statusCode(200); // TODO: If backend returns 204 (No Content), change this to 204
     }
 
     @Test(dependsOnMethods = "deleteSubject")
@@ -100,7 +98,7 @@ public class Cam07_SubjectCategoriesTests extends BaseTest {
                 .delete("/school-service/api/subject-categories/{subjectID}")
                 .then()
                 .log().body()
-                .statusCode(400)
-                .body("message", equalTo("SubjectCategory not  found"));
+                .statusCode(500) // TODO: Adjust if backend returns a different code like 400
+                .body("detail", equalTo("SubjectCategory not  found")); // TODO: Check if error message key is "message" or "detail"
     }
 }

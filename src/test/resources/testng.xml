@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Campus API Test Suite" parallel="false">
+
+    <!-- School Module Tests -->
+    <test name="School Service Tests">
+        <classes>
+            <class name="campus.school.AttestationsTests"/>
+            <class name="campus.school.BankAccountsTests"/>
+            <class name="campus.school.DepartmentsTests"/>
+            <class name="campus.school.DiscountsTests"/>
+            <class name="campus.school.DocumentTypesTests"/>
+            <class name="campus.school.FieldsTests"/>
+            <class name="campus.school.GradeLevelsTests"/>
+            <class name="campus.school.NationalitiesTests"/>
+            <class name="campus.school.PositionCategoriesTests"/>
+            <class name="campus.school.PositionsTests"/>
+            <class name="campus.school.SchoolLocationsTests"/>
+            <class name="campus.school.SubjectCategoriesTests"/>
+        </classes>
+    </test>
+
+    <!-- Student Module Tests -->
+    <test name="Student Service Tests">
+        <classes>
+            <class name="campus.student.StudentGroupsTests"/>
+        </classes>
+    </test>
+
+    <!-- Auth Tests -->
+    <test name="Authentication Tests">
+        <classes>
+            <class name="campus.auth.LoginPositiveTests"/>
+            <class name="campus.auth.LoginNegativeTests"/>
+            <class name="campus.auth.LoginWithRawJsonTest"/>
+        </classes>
+    </test>
+
+</suite>
