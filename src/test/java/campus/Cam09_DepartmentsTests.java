@@ -1,58 +1,21 @@
 package campus;
 
 import com.github.javafaker.Faker;
-import io.restassured.builder.RequestSpecBuilder;
-import io.restassured.http.ContentType;
-import io.restassured.http.Cookies;
-import io.restassured.specification.RequestSpecification;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static io.restassured.RestAssured.baseURI;
 import static io.restassured.RestAssured.given;
 
-public class Cam09_DepartmentsTests {
-    RequestSpecification recSpec;
+public class Cam09_DepartmentsTests extends BaseTest {
+
     String departmentsId;
     String departmentsName;
     Faker faker = new Faker();
-    @BeforeClass
-    public void Login() {
-
-        baseURI = "https://test.mersys.io";
-
-        Map<String, String> userCredential = new HashMap<>();
-
-        userCredential.put("username", "Campus25");
-        userCredential.put("password", "Campus.2524");
-        userCredential.put("rememberMe", "true");
-
-        Cookies cookies =
-
-                given()
-
-                        .contentType(ContentType.JSON)
-                        .body(userCredential)
-                        .when()
-                        .post("/auth/login")
-                        .then()
-                        .log().all()
-                        .statusCode(200)
-                        .extract().response().getDetailedCookies();
-
-
-        recSpec = new RequestSpecBuilder()
-                .setContentType(ContentType.JSON)
-                .addCookies(cookies)
-                .build();
-    }
 
     @Test
     public void createDepartments() {
-
         Map<String, String> departments = new HashMap<>();
 
         departmentsName = faker.country().countryCode2() + faker.number().digits(3);
@@ -61,101 +24,78 @@ public class Cam09_DepartmentsTests {
         departments.put("school", "6390f3207a3bcb6a7ac977f9");
 
         departmentsId =
-
                 given()
-
-                        .spec(recSpec)
+                        .spec(requestSpecification)
                         .body(departments)
                         .log().body()
-
                         .when()
                         .post("/school-service/api/department")
-
                         .then()
                         .log().body()
                         .statusCode(201)
-                        .extract().path("id")
-        ;
+                        .extract().path("id");
     }
 
     @Test(dependsOnMethods = "createDepartments")
     public void createDepartmentsNegative() {
-
         Map<String, String> departments = new HashMap<>();
-
-        departments.put("name", departmentsName);
+        departments.put("name", departmentsName); // Aynı isim → negatif senaryo
         departments.put("code", faker.number().digits(4));
         departments.put("school", "6390f3207a3bcb6a7ac977f9");
 
         given()
-
-                .spec(recSpec)
+                .spec(requestSpecification)
                 .body(departments)
                 .log().body()
-
                 .when()
                 .post("/school-service/api/department")
-
                 .then()
                 .log().body()
-                .statusCode(400)
-                .extract().path("id")
-        ;
+                .statusCode(400);
     }
 
     @Test(dependsOnMethods = "createDepartmentsNegative")
-    public void updateParameters() {
-
+    public void updateDepartments() {
         Map<String, String> departments = new HashMap<>();
         departmentsName = "departName" + faker.number().digits(3);
-        departments.put("name", departmentsName);
+
         departments.put("id", departmentsId);
+        departments.put("name", departmentsName);
         departments.put("code", faker.number().digits(4));
         departments.put("school", "6390f3207a3bcb6a7ac977f9");
 
-
         given()
-                .spec(recSpec)
+                .spec(requestSpecification)
                 .body(departments)
                 .log().body()
-
                 .when()
                 .put("/school-service/api/department")
-
                 .then()
                 .log().body()
-                .statusCode(200)
-        ;
+                .statusCode(200);
     }
 
-    @Test(dependsOnMethods = "updateParameters")
-    public void deleteParameters() {
-
+    @Test(dependsOnMethods = "updateDepartments")
+    public void deleteDepartments() {
         given()
-                .spec(recSpec)
+                .spec(requestSpecification)
                 .log().uri()
-
                 .when()
                 .delete("/school-service/api/department/" + departmentsId)
-
                 .then()
                 .log().body()
                 .statusCode(204);
     }
 
-    @Test(dependsOnMethods = "deleteParameters")
+    @Test(dependsOnMethods = "deleteDepartments")
     public void deleteDepartmentsNegative() {
         given()
-
-                .spec(recSpec)
+                .spec(requestSpecification)
                 .log().uri()
-
                 .when()
                 .delete("/school-service/api/department/" + departmentsId)
-
                 .then()
                 .log().body()
-                .statusCode(204)
-        ;
+                .statusCode(204); // Not: Sistem bunu 204 döndürüyorsa, böyle kalabilir
     }
 }
