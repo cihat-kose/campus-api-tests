@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test name="Campus School API Tests">
+        <classes>
+            <class name="campus.school.AttestationsTests"/>
+            <class name="campus.school.BankAccountsTests"/>
+            <class name="campus.school.DepartmentsTests"/>
+            <class name="campus.school.DiscountsTests"/>
+            <class name="campus.school.DocumentTypesTests"/>
+            <class name="campus.school.FieldsTests"/>
+            <class name="campus.school.GradeLevelsTests"/>
+            <class name="campus.school.NationalitiesTests"/>
+            <class name="campus.school.PositionCategoriesTests"/>
+            <class name="campus.school.PositionsTests"/>
+            <class name="campus.school.SchoolLocationsTests"/>
+            <class name="campus.school.SubjectCategoriesTests"/>
+        </classes>
+    </test>
+</suite>
