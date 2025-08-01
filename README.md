@@ -21,8 +21,9 @@
 8. [Reporting and Logs](#reporting-and-logs)
 9. [HTTP Status Codes](#http-status-codes)
 10. [Contributors](#contributors)
-11. [License](#license)
-12. [Contact](#contact)
+11. [Contributing](#contributing)
+12. [License](#license)
+13. [Contact](#contact)
 
 ---
 
@@ -160,6 +161,9 @@ Below is a summary of some frequently used status codes and their meanings:
 - [yilmazas](https://github.com/yilmazas) – **Software Tester**
 - [Zafer-Yilmaz](https://github.com/Zafer-Yilmaz) – **Software Tester**
 
+---
+
+## Contributing
 To contribute:
 
 1. Fork the repository.
@@ -167,6 +171,8 @@ To contribute:
 3. Commit your changes (`git commit -m 'Add new feature'`).
 4. Push to the branch (`git push origin feature-branch`).
 5. Create a Pull Request.
+
+Contributions are welcome! Please open an issue to discuss your suggestions or submit a pull request.
 
 ---
 
